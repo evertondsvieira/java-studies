@@ -1,0 +1,40 @@
+# Ambiente local e credenciais
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+.agents/
+
+# Documento de referência local
+/crm-edital.pdf
+
+# Java e ferramentas de build
+*.class
+target/
+build/
+out/
+bin/
+.gradle/
+
+# Node
+node_modules/
+dist/
+coverage/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Logs, bancos locais e sistema operacional
+*.log
+*.mv.db
+*.trace.db
+*.sqlite
+*.sqlite3
+.DS_Store
+Thumbs.db
