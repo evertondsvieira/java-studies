@@ -1,3 +1,5 @@
+package estudos.dia01;
+
 public class Chamado {
   private static int proximoId = 1;
 

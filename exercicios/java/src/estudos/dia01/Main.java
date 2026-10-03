@@ -1,3 +1,5 @@
+package estudos.dia01;
+
 import java.util.ArrayList;
 
 public class Main {
