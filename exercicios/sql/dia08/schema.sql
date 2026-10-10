@@ -1,0 +1,36 @@
+DROP TABLE IF EXISTS historico_chamado;
+DROP TABLE IF EXISTS chamado;
+DROP TABLE IF EXISTS usuario;
+
+CREATE TABLE usuario (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL UNIQUE
+);
+
+CREATE TABLE chamado (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  titulo VARCHAR(150) NOT NULL,
+  descricao VARCHAR(225),
+  status VARCHAR(20) NOT NULL DEFAULT 'ABERTO',
+  responsavel_id BIGINT,
+  criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_chamado_usuario
+    FOREIGN KEY (responsavel_id)
+    REFERENCES usuario(id),
+  
+  CONSTRAINT chk_chamado_status
+    CHECK (status IN ('ABERTO', 'EM_ANDAMENTO', 'FECHADO'))
+);
+
+CREATE TABLE historico_chamado (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  chamado_id BIGINT NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_historico_chamado
+    FOREIGN KEY (chamado_id)
+    REFERENCES chamado(id)
+);
